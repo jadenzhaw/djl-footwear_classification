@@ -30,6 +30,7 @@ public class Inference {
             Model model = Models.getModel();
             Path modelDir = Paths.get("models");
             model.load(modelDir, Models.MODEL_NAME);
+            System.out.println(" Modell geladen: " + model.getName());
 
             // define a translator for pre and post processing
             Translator<Image, Classifications> translator = ImageClassificationTranslator.builder()

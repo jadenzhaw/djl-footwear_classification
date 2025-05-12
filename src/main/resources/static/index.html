@@ -1,40 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 
 <head>
-    <title>Image Classification</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Country Flag Classification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap für modernes Styling -->
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous" />
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 40px;
+        }
+
+        h1 {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h1::before {
+            content: "🌍";
+            font-size: 1.5em;
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        #answerPart {
+            margin-top: 30px;
+        }
+
+        #preview {
+            max-width: 300px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        #answer {
+            margin-top: 15px;
+        }
+    </style>
+
     <script src="script.js" async></script>
 </head>
 
 <body>
-
-    <div class="container-fluid">
-        <h1>Footwear Classification</h1>
-        <p>DeepJavaLibrary (DJL) Demonstration by mosa</p>
+    <div class="container">
+        <h1 class="mb-4">Country Flag Classification</h1>
+        <p class="text-muted">Deep Java Library (DJL) Demonstration by mosa</p>
 
         <form>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Bitte Bild hochladen (jpeg, png)</label>
-                <input type="file" accept="image/png, image/jpeg" class="form-control-file" id="image" name="image"
+                <input type="file" accept="image/png, image/jpeg"
+                    class="form-control-file" id="image" name="image"
                     onchange="checkFiles(this.files);">
             </div>
         </form>
 
         <div id="answerPart" style="visibility: hidden;">
-            <p><b>Answer:</b>
+            <p><strong>Answer:</strong></p>
             <div id="answer"></div>
-            </p>
 
-            <p id="previewPart"><b>Analyzed Image:</b>
-            <p><img id="preview" width="300" src="#" alt="preview" /></p>
-            </p>
+            <p id="previewPart"><strong>Analyzed Image:</strong></p>
+            <img id="preview" src="#" alt="preview" />
         </div>
     </div>
-
-
 </body>
 
 </html>

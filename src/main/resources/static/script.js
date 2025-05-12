@@ -19,14 +19,13 @@ function checkFiles(files) {
     const formData = new FormData();
     formData.append("image", file);
 
-    fetch('/analyze', {
-        method: 'POST',
+    fetch("/analyze", {
+        method: "POST",
         body: formData
     })
     .then(response => response.text())
     .then(text => {
         try {
-            // ⬇️ WICHTIG: JSON-Text in Objekt umwandeln
             const predictions = JSON.parse(text);
             console.log("📊 Vorhersagen:", predictions);
             renderPrediction(predictions);
@@ -37,9 +36,9 @@ function checkFiles(files) {
         }
     })
     .catch(error => {
-        console.error("❌ Fehler beim Analysieren:", error);
+        console.error("❌ Fehler beim Upload:", error);
         document.getElementById("answer").innerHTML =
-            "<p class='text-danger'>⚠️ Fehler beim Analysieren der Antwort</p>";
+            "<p class='text-danger'>⚠️ Fehler beim Hochladen des Bildes</p>";
     });
 }
 
@@ -51,15 +50,15 @@ function renderPrediction(predictions) {
 
     predictions.sort((a, b) => b.probability - a.probability);
 
-    let table = `<table class="table table-bordered mt-3">
+    let table = `<table class="table table-bordered table-sm result-table">
         <thead class="thead-light">
-            <tr><th>🇺🇳 Land</th><th>📊 Wahrscheinlichkeit</th></tr>
+            <tr><th>Land</th><th>Wahrscheinlichkeit</th></tr>
         </thead><tbody>`;
 
-    predictions.forEach((p, index) => {
-        const percent = (p.probability * 100).toFixed(2) + "%";
-        const highlight = index === 0 ? "table-success font-weight-bold" : "";
-        table += `<tr class="${highlight}"><td>${p.className}</td><td>${percent}</td></tr>`;
+    predictions.forEach((p, i) => {
+        const prob = (p.probability * 100).toFixed(2) + "%";
+        const rowClass = i === 0 ? "high-confidence" : "";
+        table += `<tr><td>${p.className}</td><td class="${rowClass}">${prob}</td></tr>`;
     });
 
     table += "</tbody></table>";

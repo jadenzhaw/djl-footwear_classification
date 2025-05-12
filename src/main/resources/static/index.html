@@ -2,79 +2,57 @@
 <html lang="de">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <title>Country Flag Classification</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Bootstrap für modernes Styling -->
-    <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous" />
-
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             background-color: #f8f9fa;
             padding-top: 40px;
         }
 
-        h1 {
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        h1::before {
-            content: "🌍";
-            font-size: 1.5em;
-        }
-
-        .form-group label {
-            font-weight: 500;
-        }
-
-        #answerPart {
-            margin-top: 30px;
-        }
-
-        #preview {
+        .flag-preview {
             max-width: 300px;
-            border: 2px solid #dee2e6;
+            border: 1px solid #ccc;
             border-radius: 8px;
-            margin-top: 10px;
         }
 
-        #answer {
+        .high-confidence {
+            font-weight: bold;
+            color: green;
+        }
+
+        .result-table {
             margin-top: 15px;
         }
     </style>
-
-    <script src="script.js" async></script>
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="mb-4">Country Flag Classification</h1>
-        <p class="text-muted">Deep Java Library (DJL) Demonstration by mosa</p>
+    <div class="container text-center">
+        <h1 class="mb-4">
+            🌍 Country Flag Classification
+        </h1>
+        <p class="text-muted">Deep Java Library (DJL) Demo by Jaden Donati prüfe, welches Land zu deiner Flagge passt.</p>
 
-        <form>
-            <div class="form-group">
-                <label for="exampleFormControlFile1">Bitte Bild hochladen (jpeg, png)</label>
-                <input type="file" accept="image/png, image/jpeg"
-                    class="form-control-file" id="image" name="image"
-                    onchange="checkFiles(this.files);">
-            </div>
-        </form>
+        <div class="card p-4 mb-4 shadow-sm">
+            <label for="image"><strong>Bitte Flagge hochladen (jpeg, png)</strong></label>
+            <input type="file" id="image" accept="image/png, image/jpeg" class="form-control-file mt-2"
+                   onchange="checkFiles(this.files)">
+        </div>
 
-        <div id="answerPart" style="visibility: hidden;">
-            <p><strong>Answer:</strong></p>
+        <div id="answerPart" style="display: none;">
+            <h4 class="mt-4">🧠 Analyse-Ergebnis</h4>
             <div id="answer"></div>
 
-            <p id="previewPart"><strong>Analyzed Image:</strong></p>
-            <img id="preview" src="#" alt="preview" />
+            <h5 class="mt-4">🏳️ Hochgeladene Flagge</h5>
+            <img id="preview" class="flag-preview mt-2" src="#" alt="Vorschau der Flagge" />
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
